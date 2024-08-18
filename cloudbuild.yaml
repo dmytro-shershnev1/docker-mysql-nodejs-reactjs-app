@@ -14,3 +14,6 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/backend-image' ]
     id: 'Push Backend Docker Image'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
