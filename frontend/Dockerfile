@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port that the application listens on
-EXPOSE 3001
+EXPOSE 3000
 
 # Start a simple web server to serve the built React.js files
 CMD [ "npx", "serve", "-s", "build" ]

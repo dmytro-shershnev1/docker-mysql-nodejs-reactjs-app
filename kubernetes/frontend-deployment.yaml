@@ -17,4 +17,6 @@ spec:
       containers:
         - name: frontend
           image: europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/frontend-image
+          ports:
+            - containerPort: 3000
       restartPolicy: Always

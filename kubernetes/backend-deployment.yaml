@@ -17,9 +17,6 @@ spec:
       containers:
         - name: backend
           image: europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/backend-image
-          env:
-            - name: NODE_ENV
-              value: "development"
-            - name: PORT
-              value: "3000"
+          ports:
+            - containerPort: 3000
       restartPolicy: Always
