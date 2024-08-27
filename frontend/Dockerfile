@@ -1,6 +1,9 @@
 # Use the official Node.js 20 image as the base image
 FROM node:20
 
+ARG REACT_APP_API_BASE_IP
+ENV REACT_APP_API_BASE_IP=$REACT_APP_API_BASE_IP
+
 # Set the working directory in the container
 WORKDIR /app
 
