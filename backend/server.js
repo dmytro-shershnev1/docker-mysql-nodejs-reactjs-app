@@ -10,11 +10,11 @@ app.use(bodyParser.json());
 
 // Create a connection to the MySQL database
 const mysqlConfig = {
-  host: process.env.DB_HOST || "db",
+  host: process.env.DB_HOST || "mysql-instance",
   port: process.env.DB_PORT || "3306",
-  user: process.env.DB_USER || "root",
+  user: process.env.DB_USER || "app-db-user",
   password: process.env.DB_PASSWORD || "pass123",
-  database: process.env.DB_NAME || "appdb",
+  database: process.env.DB_NAME || "app-db",
 };
 
 let con = null;
@@ -30,7 +30,7 @@ const databaseInit = () => {
 };
 
 const createDatabase = () => {
-  con.query("CREATE DATABASE IF NOT EXISTS appdb", (err, results) => {
+  con.query("CREATE DATABASE IF NOT EXISTS 'app-db'", (err, results) => {
     if (err) {
       console.error(err);
       return;
@@ -41,7 +41,7 @@ const createDatabase = () => {
 
 const createTable = () => {
   con.query(
-    "CREATE TABLE IF NOT EXISTS apptb (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255))",
+    "CREATE TABLE IF NOT EXISTS 'app-tb' (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255))",
     (err, results) => {
       if (err) {
         console.error(err);

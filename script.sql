@@ -1,14 +1,12 @@
--- Create the appdb database
-CREATE DATABASE IF NOT EXISTS appdb;
+-- Create the app_db database
+CREATE DATABASE IF NOT EXISTS 'app-db';
 
--- Use the appdb database
-USE appdb;
+-- Use the app_db database
+USE 'app-db';
 
--- Create the apptb table
-CREATE TABLE `appdb`.`apptb` (
+-- Create the app_tb table
+CREATE TABLE `app-db`.`app-tb` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`));
-
-
-
+  PRIMARY KEY (`id`)
+);
