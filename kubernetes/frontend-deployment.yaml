@@ -16,7 +16,10 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/frontend-image
+          image: europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/frontend-image:latest
+          env:
+          - name: REACT_APP_API_BASE_URL
+            value: ClusterIP
           ports:
             - containerPort: 3000
       restartPolicy: Always
