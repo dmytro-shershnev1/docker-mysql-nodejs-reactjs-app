@@ -2,7 +2,7 @@ import "./App.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-const URL = `http://10.132.15.194:3000`;
+const URL = `http://34.118.225.165:3000`;
 function App() {
   const [data, setData] = useState([]);
   const [inputValue, setInputValue] = useState("");
