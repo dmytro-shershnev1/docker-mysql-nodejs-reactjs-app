@@ -1,25 +1,25 @@
 # deployment.yml
+#apiVersion: apps/v1beta1
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: users-app
+  name: frontend
   labels:
-    app: users-app
+    app: frontend
   spec:
     replicas: 1
     selector:
       matchLabels:
-        app: users-app
+        app: frontend
     template:
       metadata:
         labels:
-          app: users-app
+          app: frontend
       spec:
         containers:
           # users-app container
-          - name: users-app-container
+          - name: frontend
             image: europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/frontend-image:latest
-            imagePullPolicy: IfNotPresent
             # users-app always starts on this port
             ports:
               - containerPort: 3000
