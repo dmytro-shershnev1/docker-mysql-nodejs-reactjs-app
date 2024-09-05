@@ -1,18 +1,18 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'europe-central2-docker.pkg.dev/app-project-431616/app-docker-repo/frontend-image', './frontend' ]
+    args: [ 'build', '-t', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/frontend-image', './frontend' ]
     id: 'Build Frontend Docker Image'
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'europe-central2-docker.pkg.dev/app-project-431616/app-docker-repo/frontend-image' ]
+    args: ['push', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/frontend-image' ]
     id: 'Push Frontend Docker Image'
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'europe-central2-docker.pkg.dev/app-project-431616/app-docker-repo/backend-image', './backend' ]
+    args: ['build', '-t', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/backend-image', './backend' ]
     id: 'Build Backend Docker Image'
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'europe-central2-docker.pkg.dev/app-project-431616/app-docker-repo/backend-image' ]
+    args: ['push', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/backend-image' ]
     id: 'Push Backend Docker Image'
 
 options:
