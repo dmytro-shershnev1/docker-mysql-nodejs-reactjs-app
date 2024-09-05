@@ -1,9 +1,6 @@
 # Use the official Node.js 20 image as the base image
 FROM node:20
 
-ARG REACT_APP_API_BASE_IP
-ENV REACT_APP_API_BASE_IP=$REACT_APP_API_BASE_IP
-
 # Set the working directory in the container
 WORKDIR /app
 
@@ -20,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port that the application listens on
-EXPOSE 3000
+EXPOSE 3001
 
 # Start a simple web server to serve the built React.js files
 CMD [ "npx", "serve", "-s", "build" ]

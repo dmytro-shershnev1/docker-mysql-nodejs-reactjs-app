@@ -32,7 +32,7 @@ spec:
               name: db-user-pass
               key: database
       - name: cloud-sql-proxy
-        image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:latest
+        image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.11.4
         args:
           - "--structured-logs"
           - "--port=3306"
