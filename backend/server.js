@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 const mysqlConfig = {
   host: process.env.DB_HOST || "mysql-instance",
   port: process.env.DB_PORT || "3306",
-  user: process.env.DB_USER || "appdbuser",
+  user: process.env.DB_USER || "app-db-user",
   password: process.env.DB_PASSWORD || "pass123",
   database: process.env.DB_NAME || "appdb",
 };
