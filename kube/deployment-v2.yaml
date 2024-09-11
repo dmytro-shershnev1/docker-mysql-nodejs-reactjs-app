@@ -28,7 +28,7 @@ spec:
     spec:
       serviceAccountName: ksa-cloud-sql
       containers:
-        - name: gke-cloud-sql-app
+        - name: backend
           # Replace <LOCATION> with your Artifact Registry location (e.g., us-central1).
           # Replace <YOUR_PROJECT_ID> with your project ID.
           image: europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/backend-image:latest
