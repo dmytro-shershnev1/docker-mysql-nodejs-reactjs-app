@@ -1,13 +1,19 @@
 const express = require("express");
 const mysql = require("mysql2");
-var cors = require("cors");
+const cors = require("cors");
 const bodyParser = require("body-parser");
+
+// CORS options to allow requests from frontend running on port 5500
+const corsOptions = {
+  origin: '*', // Allow only requests from this origin
+  methods: 'GET,POST,PUSH,DELETE', // Allow only these methods
+};
 
 // Create the Express app
 const app = express();
 const SERVER_PORT = 4000;
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 // Create a connection to the MySQL database
@@ -57,7 +63,6 @@ const createTable = () => {
 // GET request
 app.get("/user", (req, res) => {
   databaseInit();
-  res.set('Access-Control-Allow-Origin', '*');
   con.query("SELECT * FROM apptb", (err, results) => {
     if (err) {
       console.error(err);
@@ -70,7 +75,6 @@ app.get("/user", (req, res) => {
 
 // POST request
 app.post("/user", (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
   con.query(
     "INSERT INTO apptb (name) VALUES (?)",
     [req.body.data],
@@ -88,14 +92,12 @@ app.post("/user", (req, res) => {
 app.post("/dbinit", (req, res) => {
   databaseInit();
   createDatabase();
-  res.set('Access-Control-Allow-Origin', '*');
   res.json("Database created successfully");
 });
 
 app.post("/tbinit", (req, res) => {
   databaseInit();
   createTable();
-  res.set('Access-Control-Allow-Origin', '*');
   res.json("Table created successfully");
 });
 
