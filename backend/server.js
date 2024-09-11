@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 
 // Create the Express app
 const app = express();
+const SERVER_PORT = 4000;
+
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -94,6 +96,6 @@ app.post("/tbinit", (req, res) => {
 });
 
 // Start the server
-app.listen(4000, () => {
-  console.log("Server running on port 4000");
+app.listen(SERVER_PORT, () => {
+  console.log(`Server running on port ${SERVER_PORT}`);
 });
