@@ -12,11 +12,11 @@ app.use(bodyParser.json());
 
 // Create a connection to the MySQL database
 const mysqlConfig = {
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
+  host: process.env.DB_HOST || 'db',
+  port: process.env.DB_PORT || '3306',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASS || 'pass123',
+  database: process.env.DB_NAME || 'appdb',
 };
 
 let con = null;
@@ -57,6 +57,7 @@ const createTable = () => {
 // GET request
 app.get("/user", (req, res) => {
   databaseInit();
+  res.set('Access-Control-Allow-Origin', '*');
   con.query("SELECT * FROM apptb", (err, results) => {
     if (err) {
       console.error(err);
@@ -69,6 +70,7 @@ app.get("/user", (req, res) => {
 
 // POST request
 app.post("/user", (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   con.query(
     "INSERT INTO apptb (name) VALUES (?)",
     [req.body.data],
@@ -86,12 +88,14 @@ app.post("/user", (req, res) => {
 app.post("/dbinit", (req, res) => {
   databaseInit();
   createDatabase();
+  res.set('Access-Control-Allow-Origin', '*');
   res.json("Database created successfully");
 });
 
 app.post("/tbinit", (req, res) => {
   databaseInit();
   createTable();
+  res.set('Access-Control-Allow-Origin', '*');
   res.json("Table created successfully");
 });
 
