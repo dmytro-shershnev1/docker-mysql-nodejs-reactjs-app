@@ -25,6 +25,6 @@ spec:
   selector:
     app: gke-cloud-sql-app
   ports:
-    - port: 80
-      targetPort: 3001
+    - port: 8080
+      targetPort: 3000
 # [END cloud_sql_mysql_mysql_gke_quickstart_service]

@@ -34,7 +34,7 @@ spec:
           image: europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/backend-image:latest
           # This app listens on port 8080 for web traffic by default.
           ports:
-            - containerPort: 3000
+            - containerPort: 4000
           env:
             - name: PORT
               value: "8080"
@@ -57,10 +57,10 @@ spec:
                 secretKeyRef:
                   name: gke-cloud-sql-secrets
                   key: database
-        #- name: frontend
-        #  image: europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/frontend-image:latest
-        #  ports:
-        #    - containerPort: 3001
+        - name: frontend
+          image: europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/frontend-image:latest
+          ports:
+            - containerPort: 3000
         - name: cloud-sql-proxy
           # This uses the latest version of the Cloud SQL proxy
           # It is recommended to use a specific version for production environments.

@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Expose the port that the application listens on
-EXPOSE 3000
+EXPOSE 4000
 
 # Start the Node.js application
 CMD [ "npm", "start" ]
