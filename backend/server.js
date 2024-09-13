@@ -13,7 +13,7 @@ const corsOptions = {
 const app = express();
 const SERVER_PORT = 4000;
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.json());
 
 // Create a connection to the MySQL database
@@ -62,7 +62,6 @@ const createTable = () => {
 
 // GET request
 app.get("/user", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
   databaseInit();
   con.query("SELECT * FROM apptb", (err, results) => {
     if (err) {
@@ -76,7 +75,6 @@ app.get("/user", (req, res) => {
 
 // POST request
 app.post("/user", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
   con.query(
     "INSERT INTO apptb (name) VALUES (?)",
     [req.body.data],
@@ -92,14 +90,12 @@ app.post("/user", (req, res) => {
 });
 
 app.post("/dbinit", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
   databaseInit();
   createDatabase();
   res.json("Database created successfully");
 });
 
 app.post("/tbinit", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
   databaseInit();
   createTable();
   res.json("Table created successfully");

@@ -2,7 +2,7 @@ import "./App.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-const URL = `http://127.0.0.1:4000`;
+const URL = 'http://127.0.0.1:4000';
 function App() {
   const [data, setData] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -13,7 +13,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(URL + "/user");
+      const response = await axios.get('/user');
       console.log(response.data);
       setData(response.data);
     } catch (error) {
@@ -27,7 +27,7 @@ function App() {
 
   const postData = async () => {
     try {
-      const response = await axios.post(URL + "/user", { data: inputValue });
+      const response = await axios.post('/user', { data: inputValue });
       console.log(response.data);
       fetchData(); // Fetch data again after posting
     } catch (error) {
@@ -37,7 +37,7 @@ function App() {
 
   const dbinit = async () => {
     try {
-      const response = await axios.post(URL + "/dbinit");
+      const response = await axios.post('/dbinit');
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -46,7 +46,7 @@ function App() {
 
   const tbinit = async () => {
     try {
-      const response = await axios.post(URL + "/tbinit");
+      const response = await axios.post('/tbinit');
       console.log(response.data);
     } catch (error) {
       console.error(error);

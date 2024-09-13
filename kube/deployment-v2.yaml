@@ -36,8 +36,6 @@ spec:
           ports:
             - containerPort: 4000
           env:
-            - name: PORT
-              value: "8080"
             - name: DB_HOST
               value: "127.0.0.1"
             - name: DB_PORT
