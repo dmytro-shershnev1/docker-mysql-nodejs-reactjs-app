@@ -21,7 +21,7 @@ Before running the project, make sure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/madhurajayashanka/docker-mysql-nodejs-reactjs-app.git
+   git clone https://github.com/dmytro-shershnev1/docker-mysql-nodejs-reactjs-app
    ```
 
 2. Navigate to the project directory:
