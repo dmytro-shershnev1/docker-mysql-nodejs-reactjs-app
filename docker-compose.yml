@@ -7,33 +7,36 @@ services:
       - MYSQL_DATABASE=appdb # Specifies the name of the database
       - MYSQL_PASSWORD=pass123 # Sets the password for the MySQL user
       - MYSQL_ROOT_PASSWORD=pass123 # Sets the root password for MySQL
-    networks:
-      - sameNetworkAsMysql # Connects the service to the 'sameNetworkAsMysql' network
+  nginx:
+    depends_on:
+      - api
+      - client
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
     ports:
-      - 3307:3306 # Maps the container's port 3306 to the host's port 3307
-
+      - "3050:80"
   api: # Defines the 'api' service for the backend API
     build: # Builds the backend API using the provided Dockerfile
-      context: ./backend # Specifies the build context directory for the backend
-      dockerfile: Dockerfile # Specifies the Dockerfile to use for building the backend
-    ports:
-      - 4000:4000 # Maps the container's port 3000 to the host's port 3000
-    networks:
-      - sameNetworkAsMysql # Connects the service to the 'sameNetworkAsMysql' network
-    depends_on:
-      - db # Specifies that the 'api' service depends on the 'db' service
-
-  frontend: # Defines the 'frontend' service for the frontend app
-    restart: on-failure # Restarts the container if it fails
+      dockerfile: Dockerfile.dev # Specifies the Dockerfile to use for building the backend
+      context: "./server" # Specifies the build context directory for the backend
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+    environment: # Sets environment variables for the database configuration
+      - DB_HOST=db # Specifies the name of the database instance
+      - DB_PORT=3306 # Specifies the DB port
+      - DB_NAME=appdb # Specifies the name of the database
+      - DB_USER=root # Specifies the root password for MySQL
+      - DB_PASS=pass123 # Specifies the password for the root user
+  client: # Defines the 'frontend' service for the frontend app
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
     build: # Builds the frontend app using the provided Dockerfile
-      context: ./frontend # Specifies the build context directory for the frontend
-    ports:
-      - 3001:3000 # Maps the container's port 3000 to the host's port 3001
-    networks:
-      - sameNetworkAsMysql # Connects the service to the 'sameNetworkAsMysql' network
-    depends_on:
-      - api # Specifies that the 'frontend' service depends on the 'api' service
-
-networks:
-  sameNetworkAsMysql: # Defines the 'sameNetworkAsMysql' network
-    driver: bridge # Specifies the network driver as 'bridge'
+      dockerfile: Dockerfile.dev
+      context: ./client # Specifies the build context directory for the frontend
+    volumes:
+      - /app/node_modules
+      - ./client:/app

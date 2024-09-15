@@ -1,19 +1,19 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/frontend-image', './frontend' ]
-    id: 'Build Frontend Docker Image'
+    args: [ 'build', '-t', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/client-image', './client' ]
+    id: 'Build Client Docker Image'
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/frontend-image' ]
-    id: 'Push Frontend Docker Image'
+    args: ['push', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/client-image' ]
+    id: 'Push Client Docker Image'
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/backend-image', './backend' ]
-    id: 'Build Backend Docker Image'
+    args: ['build', '-t', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/server-image', './server' ]
+    id: 'Build Server Docker Image'
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/backend-image' ]
-    id: 'Push Backend Docker Image'
+    args: ['push', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/server-image' ]
+    id: 'Push Server Docker Image'
 
 options:
   logging: CLOUD_LOGGING_ONLY

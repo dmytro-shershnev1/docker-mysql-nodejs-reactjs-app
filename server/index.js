@@ -3,26 +3,20 @@ const mysql = require("mysql2");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-// CORS options to allow requests from frontend running on port 5500
-const corsOptions = {
-  origin: '*', // Allow only requests from this origin
-  methods: 'GET,POST,PUSH,DELETE', // Allow only these methods
-};
-
 // Create the Express app
 const app = express();
-const SERVER_PORT = 4000;
+const SERVER_PORT = 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
 
 // Create a connection to the MySQL database
 const mysqlConfig = {
-  host: process.env.DB_HOST || 'db',
-  port: process.env.DB_PORT || '3306',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASS || 'pass123',
-  database: process.env.DB_NAME || 'appdb',
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
 };
 
 let con = null;
@@ -59,6 +53,11 @@ const createTable = () => {
     }
   );
 };
+
+//Express route definitions
+app.get("/", (req, res) => {
+  res.send("API server running...");
+});
 
 // GET request
 app.get("/user", (req, res) => {

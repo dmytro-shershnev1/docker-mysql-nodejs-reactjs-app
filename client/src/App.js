@@ -2,10 +2,9 @@ import "./App.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-const URL = 'http://127.0.0.1:4000';
 function App() {
   const [data, setData] = useState([]);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     fetchData();
@@ -13,7 +12,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('/user');
+      const response = await axios.get('/api/user');
       console.log(response.data);
       setData(response.data);
     } catch (error) {
@@ -27,7 +26,7 @@ function App() {
 
   const postData = async () => {
     try {
-      const response = await axios.post('/user', { data: inputValue });
+      const response = await axios.post('/api/user', { data: inputValue });
       console.log(response.data);
       fetchData(); // Fetch data again after posting
     } catch (error) {
@@ -37,7 +36,7 @@ function App() {
 
   const dbinit = async () => {
     try {
-      const response = await axios.post('/dbinit');
+      const response = await axios.post('/api/dbinit');
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -46,7 +45,7 @@ function App() {
 
   const tbinit = async () => {
     try {
-      const response = await axios.post('/tbinit');
+      const response = await axios.post('/api/tbinit');
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -81,7 +80,7 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {data.map((user) => (
+            {Array.isArray(data) && data.map((user) => (
               <tr key={user.id}>
                 <td>{user.id}</td>
                 <td>{user.name}</td>
