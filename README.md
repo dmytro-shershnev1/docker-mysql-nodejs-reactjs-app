@@ -41,7 +41,7 @@ Before running the project, make sure you have the following installed:
 5. Login to MySQL using the specified port, username, and password:
 
    - Host: `localhost`
-   - Port: `3307`
+   - Port: `3306`
    - Username: `root`
    - Password: `pass123`
 
@@ -52,7 +52,7 @@ Before running the project, make sure you have the following installed:
 7. Access the application by opening the following URL in your web browser:
 
    ```
-   http://localhost:3001
+   http://localhost:3050
    ```
 
    This will take you to the ReactJS application interface where you can interact with the project.
@@ -60,3 +60,13 @@ Before running the project, make sure you have the following installed:
 ## Usage
 
 This example serves as a beginner-friendly resource to learn about full-stack Docker containerization in a practical application. It provides a simplified implementation of a full-stack application using React.js, Node.js, and MySQL, all orchestrated with Docker Compose.
+
+## Deploy a project to GCP and Google Kubernetes Engine (GKE)
+
+Apply all configurations from **./k8s** folder.
+After that, apply Ingress Nginx Controller from here: https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke
+And run this command:
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.2/deploy/static/provider/cloud/deploy.yaml
+```
