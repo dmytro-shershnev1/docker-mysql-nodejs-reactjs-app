@@ -2,3 +2,4 @@
 **/node_modules/
 **/build
 cloud-sql-proxy
+.DS_Store
