@@ -65,7 +65,8 @@ This example serves as a beginner-friendly resource to learn about full-stack Do
 
 Apply all configurations from **./k8s** folder.
 After that, apply Ingress Nginx Controller from here: https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke
-And run this command:
+
+Run this command:
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.2/deploy/static/provider/cloud/deploy.yaml
