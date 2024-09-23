@@ -16,19 +16,19 @@ steps:
     id: 'Push Server Docker Image'
 
   - name: 'gcr.io/cloud-builders/gke-deploy'
-    id: 'Deploy client container image to GKE'
-    args:
-      - run
-      - --filename=k8s/client-deployment.yaml
-      - --image=europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/client-image:$SHORT_SHA
-      - --location=${_CLOUDSDK_COMPUTE_ZONE}
-      - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
-  - name: 'gcr.io/cloud-builders/gke-deploy'
     id: 'Deploy server container image to GKE'
     args:
       - run
       - --filename=k8s/server-deployment.yaml
       - --image=europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/server-image:$SHORT_SHA
+      - --location=${_CLOUDSDK_COMPUTE_ZONE}
+      - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
+  - name: 'gcr.io/cloud-builders/gke-deploy'
+    id: 'Deploy client container image to GKE'
+    args:
+      - run
+      - --filename=k8s/client-deployment.yaml
+      - --image=europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/client-image:$SHORT_SHA
       - --location=${_CLOUDSDK_COMPUTE_ZONE}
       - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
 options:
