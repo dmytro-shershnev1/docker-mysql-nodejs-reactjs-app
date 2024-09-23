@@ -1,18 +1,18 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/client-image', './client' ]
+    args: [ 'build', '-t', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/client-image:$SHORT_SHA', './client' ]
     id: 'Build Client Docker Image'
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/client-image' ]
+    args: ['push', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/client-image:$SHORT_SHA' ]
     id: 'Push Client Docker Image'
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/server-image', './server' ]
+    args: ['build', '-t', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/server-image:$SHORT_SHA', './server' ]
     id: 'Build Server Docker Image'
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/server-image' ]
+    args: ['push', 'europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/server-image:$SHORT_SHA' ]
     id: 'Push Server Docker Image'
 
   - name: 'gcr.io/cloud-builders/gke-deploy'
@@ -20,7 +20,7 @@ steps:
     args:
       - run
       - --filename=k8s/client-deployment.yaml
-      - --image=europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/client-image:latest
+      - --image=europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/client-image:$SHORT_SHA
       - --location=${_CLOUDSDK_COMPUTE_ZONE}
       - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
   - name: 'gcr.io/cloud-builders/gke-deploy'
@@ -28,7 +28,7 @@ steps:
     args:
       - run
       - --filename=k8s/server-deployment.yaml
-      - --image=europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/server-image:latest
+      - --image=europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/server-image:$SHORT_SHA
       - --location=${_CLOUDSDK_COMPUTE_ZONE}
       - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
 options:
