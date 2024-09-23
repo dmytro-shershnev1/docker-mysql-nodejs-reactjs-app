@@ -56,7 +56,7 @@ const createTable = () => {
 
 //Express route definitions
 app.get("/", (req, res) => {
-  res.send("API server running... Auto build");
+  res.send("API server running...");
 });
 
 // GET request

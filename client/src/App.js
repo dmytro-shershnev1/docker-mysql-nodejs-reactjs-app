@@ -61,12 +61,12 @@ function App() {
       <button onClick={postData}>Submit</button> <br />
       <br />
       <button style={{ backgroundColor: "red" }} onClick={dbinit}>
-        DB Init, auto build
+        DB Init
       </button>
       <br />
       <br />
       <button style={{ backgroundColor: "orange" }} onClick={tbinit}>
-        Table Init, auto build
+        Table Init
       </button>
       <br />
       <hr />
