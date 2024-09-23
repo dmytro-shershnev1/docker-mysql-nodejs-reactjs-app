@@ -23,6 +23,7 @@ steps:
       - --image=europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/server-image:$SHORT_SHA
       - --location=${_CLOUDSDK_COMPUTE_ZONE}
       - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
+      - '--output=./server-output'
   - name: 'gcr.io/cloud-builders/gke-deploy'
     id: 'Deploy client container image to GKE'
     args:
@@ -31,5 +32,6 @@ steps:
       - --image=europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/client-image:$SHORT_SHA
       - --location=${_CLOUDSDK_COMPUTE_ZONE}
       - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
+      - '--output=./client-output'
 options:
   logging: CLOUD_LOGGING_ONLY
