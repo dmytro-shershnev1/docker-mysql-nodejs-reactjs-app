@@ -20,7 +20,7 @@ steps:
     args:
       - run
       - --filename=k8s/client-deployment.yaml
-      - --image=gcr.io/app-project-431616/client-image:latest
+      - --image=europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/client-image:latest
       - --location=${_CLOUDSDK_COMPUTE_ZONE}
       - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
   - name: 'gcr.io/cloud-builders/gke-deploy'
@@ -28,7 +28,7 @@ steps:
     args:
       - run
       - --filename=k8s/server-deployment.yaml
-      - --image=gcr.io/app-project-431616/server-image:latest
+      - --image=europe-west1-docker.pkg.dev/app-project-431616/app-docker-repo/server-image:latest
       - --location=${_CLOUDSDK_COMPUTE_ZONE}
       - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
 options:
